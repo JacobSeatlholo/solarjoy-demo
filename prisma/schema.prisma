@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SolarJoy demo lead — captured automatically by the WhatsApp assistant
+model Lead {
+  id           String   @id @default(cuid())
+  reference    String   @unique
+  name         String
+  phone        String
+  suburb       String
+  propertyType String
+  interest     String
+  billRange    String
+  systemSize   String
+  estSavings   String
+  source       String   @default("whatsapp-assistant")
+  status       String   @default("new")
+  createdAt    DateTime @default(now())
+}
